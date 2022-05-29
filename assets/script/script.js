@@ -1,5 +1,5 @@
 // Variables to keep track of the quiz
-var currentQuestion = 0;
+var currentQuizDataIndex = 0;
 var time = questions.length * 15;
 var timerId;
 var time = 75;
@@ -7,7 +7,7 @@ var time = 75;
 // Variables I defined to help the code run
 var choicesEl = document.getElementById("choices");
 var questionsEl = document.getElementById("questions");
-var quizQuestions = [
+var quizData = [
   {
     title: "Commonly used data types DO NOT include:",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -69,6 +69,10 @@ var quizStart = function () {
 var loadQuiz = function () {
   // get current question object from array
   var currentQuizData = quizData[currentQuizDataIndex];
+
+  // update title with current question
+  var titleEl = document.getElementById("question-title");
+  titleEl.textContent = currentQuizData.title;
 };
 
 var clockCountDown = function () {
