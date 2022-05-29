@@ -1,11 +1,13 @@
 // Variables to keep track of the quiz
-var currentQuestionIndex = 0;
+var currentQuestion = 0;
 var time = questions.length * 15;
 var timerId;
+var time = 75;
 
 // Variables I defined to help the code run
+var choicesEl = document.getElementById("choices");
 var questionsEl = document.getElementById("questions");
-var questions = [
+var quizQuestions = [
   {
     title: "Commonly used data types DO NOT include:",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -39,12 +41,11 @@ var questions = [
     answer: "console.log",
   },
 ];
-var time = 75;
-var timerEl = document.querySelector(".time");
-
-// Dynamically created DOM element (buttonEl) to make sure function is working towards the  "Start Quiz" button and not anywhere else on the HTML page
-var startButtonEl = document.querySelector("#start");
-console.log(startButtonEl);
+var timerEl = document.getElementById("time");
+var startButtonEl = document.getElementById("start");
+var initialsEl = document.getElementById("initials");
+var feedbackEl = document.getElementById("feedback");
+var submitButton = document.getElementById("submit");
 
 // =======================START FUNCTIONS==========================
 
@@ -56,13 +57,24 @@ var quizStart = function () {
   // Reveal Questions
   questionsEl.removeAttribute("class");
 
-  //start timer
-  timerId = setInterval(clockTime, 1000);
+  //add start timer function here
+  timerId = setInterval(clockCountDown, 1000);
 
   //show starting time
   timerEl.textContent = time;
 
-  //showQuestions(); <<< define function
+  loadQuiz();
+};
+
+var loadQuiz = function () {
+  // get current question object from array
+  var currentQuizData = quizData[currentQuizDataIndex];
+};
+
+var clockCountDown = function () {
+  //update time
+  time--;
+  timerEl.textContent = time;
 };
 
 // =====================End Of Functions============================
