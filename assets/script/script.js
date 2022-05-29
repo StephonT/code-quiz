@@ -94,6 +94,26 @@ var clockCountDown = function () {
   timerEl.textContent = time;
 };
 
+var answerClick = function () {
+  // Penalize user if the answer is wrong
+  if (this.value !== quizData[currentQuizDataIndex].answer) {
+    // penalty
+    timer -= 10;
+
+    if (time < 0) {
+      time = 0;
+    }
+
+    // display new time on page
+    timerEl.textContent = time;
+    feedbackEl.textContent = "Wrong!";
+  } else {
+    feedbackEl.textContent = "Correct!";
+  }
+  // move to next question
+  currentQuizDataIndex++;
+};
+
 // =====================End Of Functions============================
 // Event Listeners
 
