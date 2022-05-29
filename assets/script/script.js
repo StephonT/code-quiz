@@ -81,6 +81,9 @@ var loadQuiz = function () {
     choiceBtn.setAttribute("class", "choice");
     choiceBtn.setAttribute("value", choice);
 
+    // add function when choice button is clicked on
+    choiceBtn.addEventListener("click", answerClick);
+
     choiceBtn.textContent = i + 1 + ". " + choice;
 
     //display on the page
@@ -98,7 +101,7 @@ var answerClick = function () {
   // Penalize user if the answer is wrong
   if (this.value !== quizData[currentQuizDataIndex].answer) {
     // penalty
-    timer -= 10;
+    time -= 10;
 
     if (time < 0) {
       time = 0;
@@ -106,12 +109,28 @@ var answerClick = function () {
 
     // display new time on page
     timerEl.textContent = time;
+
+    // display right or wrong on page
     feedbackEl.textContent = "Wrong!";
   } else {
     feedbackEl.textContent = "Correct!";
   }
+
+  // flash right or wrong feedback on page
+  feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function () {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+
   // move to next question
   currentQuizDataIndex++;
+
+  // check if questions ran out
+  if (currentQuizDataIndex === questions.length) {
+    quizEnd();
+  } else {
+    loadQuiz();
+  }
 };
 
 // =====================End Of Functions============================
