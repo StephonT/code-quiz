@@ -73,6 +73,19 @@ var loadQuiz = function () {
   // update title with current question
   var titleEl = document.getElementById("question-title");
   titleEl.textContent = currentQuizData.title;
+
+  // Display choices on page and cycle through them
+  currentQuizData.choices.forEach(function (choice, i) {
+    // create new button for each choice
+    var choiceBtn = document.createElement("button");
+    choiceBtn.setAttribute("class", "choice");
+    choiceBtn.setAttribute("value", choice);
+
+    choiceBtn.textContent = i + 1 + ". " + choice;
+
+    //display on the page
+    choicesEl.appendChild(choiceBtn);
+  });
 };
 
 var clockCountDown = function () {
