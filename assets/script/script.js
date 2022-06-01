@@ -41,6 +41,7 @@ var quizData = [
     answer: "console.log",
   },
 ];
+
 var timerEl = document.getElementById("time");
 var startButtonEl = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
@@ -73,6 +74,9 @@ var loadQuiz = function () {
   // update title with current question
   var titleEl = document.getElementById("question-title");
   titleEl.textContent = currentQuizData.title;
+
+  // Removes choices after correct answer is chosen
+  choicesEl.innerHTML = "";
 
   // Display choices on page and cycle through them
   currentQuizData.choices.forEach(function (choice, i) {
