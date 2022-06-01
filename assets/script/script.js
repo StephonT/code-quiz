@@ -161,12 +161,13 @@ var quizEnd = function () {
 
 var saveHighScore = function () {
   // new score object
+
+  var initials = initialsEl.value.trim();
+
   var newScore = {
     score: time,
     initials: initials,
   };
-
-  var initials = initialsEl.value.trim();
 
   //make sure value wasn't empty
   if (initials !== "") {
@@ -176,6 +177,7 @@ var saveHighScore = function () {
 
   //save to localstorage
   highscores.push(newScore);
+  console.log(highscores);
   window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
   // redirect to next page
@@ -185,10 +187,17 @@ var saveHighScore = function () {
   $("input[id='initials']").val("");
 };
 
+initialsEl.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    submitButton.click();
+  }
+});
 submitButton.onclick = saveHighScore;
 
 // =====================End Of Functions============================
 // Event Listeners
 
 // start quiz
+
 startButtonEl.addEventListener("click", quizStart);
