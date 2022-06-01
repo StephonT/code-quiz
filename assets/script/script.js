@@ -99,6 +99,11 @@ var clockCountDown = function () {
   //update time
   time--;
   timerEl.textContent = time;
+
+  // check if user ran out of time
+  if (time < 0) {
+    quizEnd();
+  }
 };
 
 var answerClick = function () {
@@ -107,6 +112,7 @@ var answerClick = function () {
     // penalty
     time -= 10;
 
+    // so clock won't go into the negatives
     if (time < 0) {
       time = 0;
     }
@@ -130,12 +136,50 @@ var answerClick = function () {
   currentQuizDataIndex++;
 
   // check if questions ran out
-  if (currentQuizDataIndex === questions.length) {
+  if (currentQuizDataIndex === quizData.length) {
     quizEnd();
   } else {
     loadQuiz();
   }
 };
+
+var quizEnd = function () {
+  // Stop timer
+  clearInterval(timerId);
+
+  //shows end screen
+  var endScreenEl = document.getElementById("end-screen");
+  endScreenEl.removeAttribute("class");
+
+  // show final score
+  var finalScoreEl = document.getElementById("final-score");
+  finalScoreEl.textContent = time;
+
+  // hide questions section
+  questionsEl.setAttribute("class", "hide");
+};
+
+var saveHighScore = function () {
+  // new score object
+  var newScore = {
+    score: time,
+    initials: initials,
+  };
+
+  var initials = initialsEl.value.trim();
+
+  //save to localstorage
+  highscores.push(newScore);
+  window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+  // redirect to next page
+  window.location.href = "highscores.html";
+
+  //clear initial input field
+  $("input[id='initials']").val("");
+};
+
+submitButton.onclick = saveHighScore;
 
 // =====================End Of Functions============================
 // Event Listeners
