@@ -168,6 +168,12 @@ var saveHighScore = function () {
 
   var initials = initialsEl.value.trim();
 
+  //make sure value wasn't empty
+  if (initials !== "") {
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+  }
+
   //save to localstorage
   highscores.push(newScore);
   window.localStorage.setItem("highscores", JSON.stringify(highscores));
