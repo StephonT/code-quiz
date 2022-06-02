@@ -17,5 +17,12 @@ var displayHighScore = function () {
   });
 };
 
+var clearHighScores = function () {
+  window.localStorage.removeItem("highscores");
+  window.location.reload();
+};
+
+document.getElementById("clear").onclick = clearHighScores;
+
 //call function when page is loaded
 displayHighScore();
