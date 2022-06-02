@@ -36,4 +36,11 @@ In this code, I was able to achieve all the acceptance criteria for the user. Pl
 
 <!--Add Link Here-->
 
-## Screenshot
+## Screenshots
+
+<img width="1440" alt="Screen Shot 2022-06-02 at 5 17 07 PM" src="https://user-images.githubusercontent.com/104699408/171740414-f7a237bc-84bc-494a-9a37-9bce80560e16.png">
+
+<img width="1440" alt="Screen Shot 2022-06-02 at 5 17 59 PM" src="https://user-images.githubusercontent.com/104699408/171740441-7e7cefa1-b08c-42af-b880-d152189ce85f.png">
+
+
+
